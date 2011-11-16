@@ -1,0 +1,76 @@
+// ypickme.js
+
+//isIE6 = /msie|MSIE 6/.test(navigator.userAgent);
+//if isIE6 {crummyBrowser = true;}
+//some globals
+var userAppObj = new Object();
+ userAppObj.username = 0;
+ userAppObj.userID = 0;
+ userAppObj.activePlaylist = 0;
+//alert("js loaded");
+//-----------------------------------------------------------------------
+
+function documentReadyFunc(){
+	$('#modalbox').hide();
+	if(userAppObj.userID == 0){ //not logged in
+       $('#loginPanel').show();
+       
+       $("#panelLeft").load('pgLogin.php');
+       $('#logonform').bind('submit', function() 
+          {event.preventDefault();
+          } );
+   }
+   else
+   { //do if YES logged in 
+//      alert("doing logged-in start stuff");
+   $(".panelLeft").html( "Hello, " + userAppObj.username +"<br>");
+   $('.panelLeft').append('userID # '+ userAppObj.userID +'logged in');
+
+	}
+  //$('#mainbox').load('pgWelcome.php');
+  
+    $("#loginform").submit(function() {
+     loginformSubmit();
+     return false;});
+
+
+    $("form#logonform.logonform").submit(function() {
+		alert("loginbutton");
+     loginformSubmit();
+     return false;});
+     
+  jQuery(document).ajaxStop(function(){
+          $('body').css('cursor','auto');//  alert("it is done");
+          }) //end ajaxStop
+}
+//----------------------
+function loginformSubmit(){
+//	alert("in loginformSubmit");
+  var data = $("#logonform").serialize();
+//  alert("data = " + data);
+//  alert("userID:"+data[0].userID);
+  $.ajax({
+    url: "login.php",
+    type: "POST",
+    data: data,
+    dataType:"json",
+    success: function(data){
+//n.b.: "success" is true if query completes, even if 0 rows returned!
+        if (data == null) {
+			alert('NULL DATA HAS COME');
+        }else{
+//			alert("I can has userID data?: " + data[0].userID);
+			userAppObj.username = data[0].userID;
+			userAppObj.userID = data[0].userUID;        
+		}
+        documentReadyFunc();
+        }, //successfunction
+    error: function(data){
+        alert("fail"+ data);
+        }});
+	//alert("done w/ ajax");
+  return false;
+        
+} //loginformSubmit(){}
+
+
