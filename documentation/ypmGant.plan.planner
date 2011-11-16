@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<project name="YPickMe" company="SiliconTally" manager="Bob C." phase="" project-start="20111028T000000Z" mrproject-version="2" calendar="1">
+  <properties/>
+  <phases/>
+  <calendars>
+    <day-types>
+      <day-type id="0" name="Working" description="A default working day"/>
+      <day-type id="1" name="Nonworking" description="A default non working day"/>
+      <day-type id="2" name="Use base" description="Use day from base calendar"/>
+    </day-types>
+    <calendar id="1" name="Default">
+      <default-week mon="0" tue="0" wed="0" thu="0" fri="0" sat="1" sun="1"/>
+      <overridden-day-types>
+        <overridden-day-type id="0">
+          <interval start="0800" end="1200"/>
+          <interval start="1300" end="1700"/>
+        </overridden-day-type>
+      </overridden-day-types>
+      <days/>
+    </calendar>
+  </calendars>
+  <tasks>
+    <task id="1" name="YPickMe" note="" work="1641600" start="20111028T000000Z" end="20111207T170000Z" work-start="20111028T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="2" name="dbaseConst" note="" work="115200" start="20111028T000000Z" end="20111102T170000Z" work-start="20111028T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="3" name="appCore" note="" work="144000" start="20111102T170000Z" end="20111109T170000Z" work-start="20111103T080000Z" percent-complete="50" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="2" type="FS"/>
+        </predecessors>
+        <task id="4" name="baseCore" note="" work="57600" start="20111102T170000Z" end="20111104T170000Z" work-start="20111103T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="5" name="acctCreate" note="" work="86400" start="20111104T170000Z" end="20111109T170000Z" work-start="20111107T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <predecessors>
+            <predecessor id="1" predecessor-id="4" type="FS"/>
+          </predecessors>
+        </task>
+      </task>
+      <task id="6" name="doc the core" note="" work="57600" start="20111109T170000Z" end="20111111T170000Z" work-start="20111110T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="3" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="7" name="deploy to dev server" note="" work="28800" start="20111111T170000Z" end="20111114T170000Z" work-start="20111114T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="6" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="8" name="appCore2" note="" work="691200" start="20111109T170000Z" end="20111207T170000Z" work-start="20111110T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="3" type="FS"/>
+        </predecessors>
+        <task id="9" name="acctMgt" note="" work="86400" start="20111109T170000Z" end="20111114T170000Z" work-start="20111110T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="10" name="docUpload" note="" work="86400" start="20111109T170000Z" end="20111114T170000Z" work-start="20111110T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="11" name="imgConvert" note="" work="86400" start="20111114T170000Z" end="20111117T170000Z" work-start="20111115T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <predecessors>
+            <predecessor id="1" predecessor-id="10" type="FS"/>
+          </predecessors>
+        </task>
+        <task id="12" name="editor" note="" work="403200" start="20111117T170000Z" end="20111207T170000Z" work-start="20111118T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <predecessors>
+            <predecessor id="1" predecessor-id="11" type="FS"/>
+          </predecessors>
+        </task>
+        <task id="13" name="viewOther" note="" work="28800" start="20111109T170000Z" end="20111110T170000Z" work-start="20111110T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+          <task id="14" name="URL rewritingScheme" note="" work="28800" start="20111109T170000Z" end="20111110T170000Z" work-start="20111110T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        </task>
+      </task>
+      <task id="15" name="css styling1" note="" work="604800" start="20111028T000000Z" end="20111125T170000Z" work-start="20111028T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+    </task>
+  </tasks>
+  <resource-groups/>
+  <resources/>
+  <allocations/>
+</project>

@@ -1,0 +1,68 @@
+
+database name: ypickme
+dbuser = 'ypickme'
+dbpass = 'ypickme5q1'
+('creds.php' must match )
+
+----------------------------------------------------
+CREATE TABLE `users` (
+ `userUID` int(11) NOT NULL AUTO_INCREMENT,
+ `userID` varchar(20) NOT NULL,
+ `userNameF` varchar(20) NOT NULL,
+ `userNameL` varchar(20) NOT NULL,
+ `userPass` varchar(20) NOT NULL,
+ `userRank` int(11) NOT NULL DEFAULT '1' COMMENT '1:regular user 9:admin see readme for others',
+ `userActive` int(11) NOT NULL DEFAULT '1' COMMENT '0: inactive other = active',
+ PRIMARY KEY (`userUID`),
+ UNIQUE KEY `userID` (`userID`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1
+---------------------------------------------------
+CREATE TABLE `documents` (
+ `docUID` int(11) NOT NULL AUTO_INCREMENT,
+ `userUID` int(11) NOT NULL COMMENT 'owner of the doc',
+ `category` int(11) NOT NULL DEFAULT '1' COMMENT '1 = resum2 (2=flyer etc ?) lookup from CATEGORY table',
+ `isPrimary` int(11) NOT NULL DEFAULT '0' COMMENT '0 = false',
+ `description` varchar(300) NOT NULL COMMENT 'short text description',
+ `mainImage` varchar(100) NOT NULL COMMENT 'path to the main image file e.g. files/dodc/3846396.png',
+ `industry` int(11) NOT NULL DEFAULT '0' COMMENT 'lookup from INDUSTRY table',
+ `isPublic` int(11) NOT NULL DEFAULT '0' COMMENT 'not public by default',
+ `isActive` int(11) NOT NULL DEFAULT '1' COMMENT 'set to 0 to Turn Off a profile',
+ PRIMARY KEY (`docUID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+---------------------------------------------------
+CREATE TABLE `annotation` (
+ `UID` int(11) NOT NULL AUTO_INCREMENT,
+ `docID` int(11) NOT NULL COMMENT 'which doc this annot belongs to',
+ `type` int(11) NOT NULL COMMENT 'look up type',
+ `posX` int(11) NOT NULL,
+ `posY` int(11) NOT NULL,
+ `contentLocation` varchar(80) NOT NULL,
+ PRIMARY KEY (`UID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+-----------------------------------------------------
+
+CREATE TABLE `annType` (
+ `UID` int(11) NOT NULL AUTO_INCREMENT,
+ `sortOrder` int(11) NOT NULL DEFAULT '0' COMMENT 'used for visual sorting',
+ `name` varchar(10) NOT NULL COMMENT '1 text 2 video etcc',
+ `description` varchar(200) NOT NULL COMMENT 'longer description of annotation type',
+ `pathToIcon` varchar(80) NOT NULL COMMENT 'url of icon',
+ PRIMARY KEY (`UID`),
+ UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+---------------------------------------------------------
+
+CREATE TABLE `industry` (
+ `indUID` int(11) NOT NULL AUTO_INCREMENT,
+ `title` varchar(20) NOT NULL,
+ `sortOrder` int(11) NOT NULL,
+ `description` varchar(100) NOT NULL,
+ `pathToIcon` varchar(100) NOT NULL,
+ PRIMARY KEY (`indUID`),
+ UNIQUE KEY `title` (`title`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+--------------------------------------------------------
+
